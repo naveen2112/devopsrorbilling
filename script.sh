@@ -1,5 +1,5 @@
 #!/bin/bash
-RUN rake db:create
-RUN rake db:migrate
-RUN rake assets:precompile
+rake db:create
+rake db:migrate
+rake assets:precompile
 exec "$@"
