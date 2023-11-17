@@ -14,6 +14,8 @@ WORKDIR /var/www
 RUN git clone https://github.com/naveen2112/devopsrorbilling.git
 WORKDIR  /var/www/devopsrorbilling
 RUN bundle install
-RUN chmod +x ./entrypoint.sh
-ENTRYPOINT [ "./entrypoint.sh" ]
+RUN mkdir entry
+COPY ./entrypoint.sh /var/www/devopsrorbilling/entry
+RUN chmod +x /var/www/devopsrorbilling/entry/entrypoint.sh
+ENTRYPOINT [ "/var/www/devopsrorbilling/entry/entrypoint.sh" ]
 CMD [ "bundle", "exec", "rails", "s" ]
