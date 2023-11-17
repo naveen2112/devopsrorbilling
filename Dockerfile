@@ -1,5 +1,5 @@
 FROM ruby:2.7.3
-RUN apt update -y && \ 
+RUN apt update -y && \
 apt install -y git-core curl zlib1g-dev build-essential \
 libssl-dev libreadline-dev libyaml-dev libsqlite3-dev sqlite3 \
 libxml2-dev libxslt1-dev libcurl4-openssl-dev software-properties-common \
@@ -14,7 +14,8 @@ WORKDIR /var/www
 RUN git clone https://github.com/naveen2112/devopsrorbilling.git
 WORKDIR  /var/www/devopsrorbilling
 RUN bundle install
-RUN chmod +x ./entrypoint.sh
-ENTRYPOINT [ "./entrypoint.sh" ] 
+RUN mkdir entrypoint
+COPY ./entrypoint.sh /var/www/devopsrorbilling/entrypoint
+RUN chmod +x /var/www/devopsrorbilling/entrypoint/entrypoint.sh
+ENTRYPOINT [ "/var/www/devopsrorbilling/entrypoint/entrypoint.sh" ]
 CMD [ "bundle", "exec", "rails", "s" ]
-
