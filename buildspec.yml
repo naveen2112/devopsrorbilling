@@ -1,0 +1,20 @@
+versions: 0.2
+phases:
+   pre_build:
+     commands:
+        - echo setting docker connection  in ecr
+        - aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 763768204702.dkr.ecr.ap-south-1.amazonaws.com
+ 
+   build: 
+     commands:
+        - echo building the docker file
+        - docker build -t kjn .
+        - echo done with building
+
+   post_build:
+     commands:
+        - echo tagging image with ecr
+        - docker tag kjn:latest 763768204702.dkr.ecr.ap-south-1.amazonaws.com/kjn:latest
+        - echo pushing image to ecr
+        - docker push 763768204702.dkr.ecr.ap-south-1.amazonaws.com/kjn:latest
+        - echo pushed image to ecr
