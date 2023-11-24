@@ -10,13 +10,10 @@ npm install -g yarn
 RUN apt install git -y && apt install vim -y
 RUN gem install rails -v 6.1.3
 RUN gem install bundler:2.2.21
-RUN gem install webpacker
 WORKDIR /var/www
 RUN git clone https://github.com/naveen2112/devopsrorbilling.git
 WORKDIR  /var/www/devopsrorbilling
 RUN bundle install
-RUN bundle exec rails webpacker:install
-RUN rails webpacker:compile
 RUN chmod +x ./entrypoint.sh
 ENTRYPOINT [ "./entrypoint.sh" ]
 CMD [ "bundle", "exec", "rails", "s" ]
