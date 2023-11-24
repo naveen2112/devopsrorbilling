@@ -18,16 +18,18 @@ phases:
    post_build:
      commands:
         - echo tagging ror image with ecr
-        - docker tag ror:latest 763768204702.dkr.ecr.ap-south-1.amazonaws.com/demorornginx:$IMAGE_TAG
+        - docker tag ror:latest $REPOSITORY_URI:$IMAGE_TAG
+        - docker tag ror:latest $REPOSITORY_URI:latest
         - echo pushing ror image to ecr
-        - docker push ror:latest
+        - docker push $REPOSITORY_URI:latest
         - docker push $REPOSITORY_URI:$IMAGE_TAG
         - echo pushed image to ecr
         - echo tagging nginx with ecr
-        - docker tag nginx:latest 763768204702.dkr.ecr.ap-south-1.amazonaws.com/demorornginx:$IMAGE_TAG
+        - docker tag nginx:latest $REPOSITORY_URI:$IMAGE_TAG
+        - docker tag nginx:latest $REPOSITORY_URI:latest
         - echo pushing nginx image to ecr
-        - docker push nginx:latest
-        - docker push REPOSITORY_URI:$IMAGE_TAG
+        - docker push $REPOSITORY_URI:latest
+        - docker push $REPOSITORY_URI:$IMAGE_TAG
 
 
         
