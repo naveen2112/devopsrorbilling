@@ -1,12 +1,12 @@
 version: 0.2
-
 phases:
    pre_build:
      commands:
         - echo setting docker connection  in ecr
         - aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 763768204702.dkr.ecr.ap-south-1.amazonaws.com
         - REPOSITORY_URI=763768204702.dkr.ecr.ap-south-1.amazonaws.com/demorornginx
-        - IMAGE_TAG=build-$(echo $CODEBUILD_BUILD_ID | awk -F":" '{print $2}')
+        - REPOSITORY_URI_NGINX=763768204702.dkr.ecr.ap-south-1.amazonaws.com/demonginx
+  
    build: 
      commands:
         - echo building the docker file
@@ -23,10 +23,12 @@ phases:
         - echo pushing ror image to ecr
         - docker push $REPOSITORY_URI:latest
         - echo pushed image to ecr
+        - echo tagging nginx image with ecr
+        - docker tag nginx:latest $REPOSITORY_URI_NGINX:latest
+        - echo pushing ngnix image to ecr
+        - docker push $REPOSITORY_URI_NGINX:latest
 
 
-
-        
 
    
 
