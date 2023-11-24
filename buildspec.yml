@@ -8,13 +8,20 @@ phases:
    build: 
      commands:
         - echo building the docker file
-        - docker build -t kjn .
-        - echo done with building
+        - docker build -t ror .
+        - echo done with building ror
+        - cd ./nginx
+        - docker build -t nginx .
+        - echo done wth building nginx
 
    post_build:
      commands:
-        - echo tagging image with ecr
-        - docker tag kjn:latest 763768204702.dkr.ecr.ap-south-1.amazonaws.com/kjn:latest
-        - echo pushing image to ecr
-        - docker push 763768204702.dkr.ecr.ap-south-1.amazonaws.com/kjn:latest
+        - echo tagging ror image with ecr
+        - docker tag ror:latest 763768204702.dkr.ecr.ap-south-1.amazonaws.com/demorornginx:ror
+        - echo pushing ror image to ecr
+        - docker push 763768204702.dkr.ecr.ap-south-1.amazonaws.com/demorornginx:ror
         - echo pushed image to ecr
+        - echo tagging nginx with ecr
+        - docker tag nginx:latest 763768204702.dkr.ecr.ap-south-1.amazonaws.com/demorornginx:nginx
+        - echo pushing nginx image to ecr
+        - docker push 763768204702.dkr.ecr.ap-south-1.amazonaws.com/demorornginx:nginx
