@@ -27,11 +27,7 @@ phases:
         - docker tag nginx:latest $REPOSITORY_URI_NGINX:latest
         - echo pushing ngnix image to ecr
         - docker push $REPOSITORY_URI_NGINX:latest
-        - printf '[{"name":"ror","imageUri":"%s"}]' $REPOSITORY_URI:latest $REPOSITORY_URI:latest > imagedefinitions.json
-
-artifacts:
-  files:
-    - imagedefinitions.json
+       
 
 
         
