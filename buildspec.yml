@@ -30,7 +30,8 @@ phases:
         - printf '[{"name":"ror","imageUri":"%s"}]' 763768204702.dkr.ecr.ap-south-1.amazonaws.com/demorornginx:latest > imagedefinitions.json
         - printf '[{"name":"nginx","imageUri":"%s"}]' 763768204702.dkr.ecr.ap-south-1.amazonaws.com/demonginx:latest >> imagedefinitions.json
 artifacts:
-     files: imagedefinitions.json
+     files:
+        - imagedefinitions.json
 
 
 
