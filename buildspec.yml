@@ -5,8 +5,8 @@ phases:
     commands:
       - echo Logging in to Amazon ECR...
       - aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 763768204702.dkr.ecr.ap-south-1.amazonaws.com
-      - REPOSITORY_URI=763768204702.dkr.ecr.ap-south-1.amazonaws.com/ecsror
-      - REPOSITORY_URI_NGINX=763768204702.dkr.ecr.ap-south-1.amazonaws.com/ecsnginx
+      - REPOSITORY_URI=763768204702.dkr.ecr.ap-south-1.amazonaws.com/ecsrorbuildtry
+      - REPOSITORY_URI_NGINX=763768204702.dkr.ecr.ap-south-1.amazonaws.com/ecsnginxtry
 
 
   build:
