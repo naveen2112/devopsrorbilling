@@ -29,7 +29,7 @@ phases:
         - docker push $REPOSITORY_URI_NGINX:latest
         - printf '[{"name":"ror","imageUri":"%s"}]' 763768204702.dkr.ecr.ap-south-1.amazonaws.com/demorornginx:latest > imagedefinitions.json
         - printf '[{"name":"ror","imageUri":"%s"}]' 763768204702.dkr.ecr.ap-south-1.amazonaws.com/demonginx:latest > imagedefinitions.json
-   artifacts:
+artifacts:
      files: imagedefinitions.json
 
 
