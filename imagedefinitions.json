@@ -1,1 +1,11 @@
+[
+    {
+      "name": "ror",
+      "imageUri": "763768204702.dkr.ecr.ap-south-1.amazonaws.com/cicdror"
+    },
+    {
+        "name": "nginx",
+        "imageUri": "763768204702.dkr.ecr.ap-south-1.amazonaws.com/cicdnginx:latest"
+      }
 
+  ]
