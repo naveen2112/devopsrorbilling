@@ -28,5 +28,5 @@ phases:
       - printf '[{"name":"ror","imageUri":"%s"}]\n[{"name":"nginx","imageUri":"%s"}]' $REPOSITORY_URI:latest $REPOSITORY_URI_NGINX:latest > imagedefinitions.json
       - cat imagedefinitions.json
 artifacts:
-    files: 
-      - imagedefinitions.json
+    files: imagedefinitions.json
+      
