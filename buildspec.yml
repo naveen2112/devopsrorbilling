@@ -5,8 +5,8 @@ phases:
     commands:
       - echo Logging in to Amazon ECR...
       - aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 763768204702.dkr.ecr.ap-south-1.amazonaws.com
-      - REPOSITORY_URI=763768204702.dkr.ecr.ap-south-1.amazonaws.com/cicdror
-      - REPOSITORY_URI_NGINX=763768204702.dkr.ecr.ap-south-1.amazonaws.com/cicdnginx
+      - REPOSITORY_URI=763768204702.dkr.ecr.ap-south-1.amazonaws.com/cicd-rorterraform
+      - REPOSITORY_URI_NGINX=763768204702.dkr.ecr.ap-south-1.amazonaws.com/cicd-nginxterraform
 
   build:
     commands:
