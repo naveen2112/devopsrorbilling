@@ -25,7 +25,7 @@ phases:
       - echo push nginx image...
       - docker push $REPOSITORY_URI_NGINX:latest
       - echo Writing image definitions file...
-      - printf '[{"name":"ror","imageUri":"%s"}]' $REPOSITORY_URI:latest > imagedefinitions.json
+      - printf '[{"name":"ror","imageUri":"763768204702.dkr.ecr.ap-south-1.amazonaws.com/cicdror:latest"}]' > imagedefinitions.json
       - cat imagedefinitions.json
 artifacts:
     files: imagedefinitions.json
