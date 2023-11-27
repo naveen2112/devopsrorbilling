@@ -3,6 +3,8 @@ version: 0.2
 phases:
   pre_build:
     commands:
+      - echo Logging in to Dokerhub
+      - docker login -u naveen2112 -p naveendec21
       - echo Logging in to Amazon ECR...
       - aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 763768204702.dkr.ecr.ap-south-1.amazonaws.com
       - REPOSITORY_URI=763768204702.dkr.ecr.ap-south-1.amazonaws.com/cicd-rorterraform
