@@ -10,6 +10,7 @@ npm install -g yarn
 RUN apt install git -y && apt install vim -y
 RUN gem install rails -v 6.1.3
 RUN gem install bundler:2.2.21
+RUN gem install opentelemetry-api -v 1.1.0
 RUN gem install opentelemetry-sdk
 RUN gem install opentelemetry-exporter-otlp
 RUN gem install opentelemetry-instrumentation-all
