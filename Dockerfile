@@ -10,11 +10,13 @@ npm install -g yarn
 RUN apt install git -y && apt install vim -y
 RUN gem install rails -v 6.1.3
 RUN gem install bundler:2.2.21
+RUN gem install opentelemetry-sdk
+RUN gem install opentelemetry-exporter-otlp
+RUN gem install opentelemetry-instrumentation-all
 WORKDIR /var/www
 RUN git clone https://github.com/naveen2112/devopsrorbilling.git
 WORKDIR  /var/www/devopsrorbilling
 RUN bundle install
-RUN gem install opentelemetry-instrumentation-all -v 0.35.0
 RUN chmod +x ./entrypoint.sh
 ENTRYPOINT [ "./entrypoint.sh" ]
 CMD [ "bundle", "exec", "rails", "s" ]
