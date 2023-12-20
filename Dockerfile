@@ -14,6 +14,7 @@ WORKDIR /var/www
 RUN git clone https://github.com/naveen2112/devopsrorbilling.git
 WORKDIR  /var/www/devopsrorbilling
 RUN bundle install
+RUN gem install opentelemetry-instrumentation-all -v 0.35.0
 RUN chmod +x ./entrypoint.sh
 ENTRYPOINT [ "./entrypoint.sh" ]
 CMD [ "bundle", "exec", "rails", "s" ]
