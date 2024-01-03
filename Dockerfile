@@ -7,6 +7,7 @@ libffi-dev libgdbm-dev libncurses5-dev automake libtool bison libffi-dev && \
 apt-get install libpq-dev -y && \
 apt install -y nodejs npm && \
 npm install -g yarn
+RUN apt-get install libpq-dev -y
 RUN apt install git -y && apt install vim -y
 RUN gem install rails -v 6.1.3
 RUN gem install bundler:2.2.21
