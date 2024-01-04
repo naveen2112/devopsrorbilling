@@ -26,8 +26,8 @@ test:
 
 production:
   <<: *default
-  host: <%= ENV['DATABASE_HOST'] %>
-  database: <%= ENV['DATABASE_NAME'] %>
-  username: <%= ENV['DATABASE_USERNAME'] %>
-  password: <%= ENV['DATABASE_PASSWORD'] %>
-  port: <%= ENV['DATABASE_PORT'] %>
+  host: database-2.cfetpjdspyv9.ap-south-1.rds.amazonaws.com
+  database: postgres
+  username: postgres
+  password: postgres
+  port: 5432
