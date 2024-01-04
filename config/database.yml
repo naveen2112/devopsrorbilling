@@ -11,10 +11,12 @@ default: &default
   timeout: 5000
 
 development:
-  adapter: postgresql
+  <<: *default
+  host: database-2.cfetpjdspyv9.ap-south-1.rds.amazonaws.com
+  database: postgres
   username: postgres
-#  database: db/development.sqlite3
-  database: billing_system
+  password: postgres
+  port: 5432
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
