@@ -12,7 +12,7 @@ default: &default
 
 development:
   <<: *default
-  host: 13.234.202.160
+  host: 127.0.0.1
   database: postgres
   username: postgres
   password: admin123
@@ -28,7 +28,7 @@ test:
 
 production:
   <<: *default
-  host: 13.234.202.160
+  host: 127.0.0.1
   database: postgres
   username: postgres
   password: admin123
