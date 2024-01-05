@@ -12,10 +12,10 @@ default: &default
 
 development:
   <<: *default
-  host: database-2.cfetpjdspyv9.ap-south-1.rds.amazonaws.com
+  host: ror-kube.cfetpjdspyv9.ap-south-1.rds.amazonaws.com
   database: postgres
   username: postgres
-  password: postgres
+  password: admin123
   port: 5432
 
 # Warning: The database defined as "test" will be erased and
@@ -28,8 +28,8 @@ test:
 
 production:
   <<: *default
-  host: database-2.cfetpjdspyv9.ap-south-1.rds.amazonaws.com
+  host: ror-kube.cfetpjdspyv9.ap-south-1.rds.amazonaws.com
   database: postgres
   username: postgres
-  password: postgres
+  password: admin123
   port: 5432
