@@ -9,6 +9,7 @@ apt install -y nodejs npm && \
 npm install -g yarn
 RUN apt-get install libpq-dev -y
 RUN apt install git -y && apt install vim -y
+RUN gem install nokogiri -v 1.15.5
 RUN gem install rails -v 6.1.3
 RUN gem install bundler:2.2.21
 WORKDIR /var/www
