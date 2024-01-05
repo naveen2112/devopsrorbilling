@@ -59,3 +59,5 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'opentelemetry-sdk'
 
+gem 'opentelemetry-exporter-otlp'
+
