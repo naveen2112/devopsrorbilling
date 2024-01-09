@@ -12,11 +12,11 @@ default: &default
 
 development:
   <<: *default
-  host: 127.0.0.1
-  database: postgres
-  username: postgres
-  password: admin123
-  port: 5432
+  database: <%= ENV['DB_NAME']%>
+  username: <%= ENV['DB_USERNAME']%>
+  password: <%= ENV['DB_PASSWORD']%>
+  host: <%= ENV['DB_HOSTNAME']%>
+  port: <%= ENV['DB_PORT']%>
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -28,8 +28,8 @@ test:
 
 production:
   <<: *default
-  host: 127.0.0.1
-  database: postgres
-  username: postgres
-  password: admin123
-  port: 5432
+  database: <%= ENV['DB_NAME']%>
+  username: <%= ENV['DB_USERNAME']%>
+  password: <%= ENV['DB_PASSWORD']%>
+  host: <%= ENV['DB_HOSTNAME']%>
+  port: <%= ENV['DB_PORT']%>
