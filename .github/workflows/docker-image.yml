@@ -55,7 +55,7 @@ jobs:
           fi
 
           # Replace the image tag with git SHA
-          sudo sed -i "s|naveen2112/nginx:sha|naveen2112/nginx:${{ github.sha }}|" docker-compose.yml
+          sudo sed -i "s|naveen2112/nginx:*|naveen2112/nginx:${{ github.sha }}|" docker-compose.yml
 
           # Pull latest docker image
           sudo docker pull ${{ secrets.DOCKERHUB_USERNAME }}/rorbilling:${{ github.sha }}
