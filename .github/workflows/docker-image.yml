@@ -40,7 +40,6 @@ jobs:
         run: |
          short_sha=$(echo "${{ github.sha }}" | cut -c1-9)
          echo $short_sha
-         cat $short_sha
          echo "${{ secrets.DOCKERHUB_TOKEN }}"
          echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
       - name: Copy SSH key
