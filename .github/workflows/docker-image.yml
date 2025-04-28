@@ -65,9 +65,9 @@ jobs:
 
           # Pull latest docker image
           sudo docker pull ${{ secrets.DOCKERHUB_USERNAME }}/nginx:${{ github.sha }}
-          sudo ln -sfn .env.production .env
+          
 
           #  Start containers with inline env
-          sudo docker-compose up -d --build
+          sudo docker-compose up -d 
           EOF
 
