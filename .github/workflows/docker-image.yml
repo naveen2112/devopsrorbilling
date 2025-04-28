@@ -42,10 +42,12 @@ jobs:
          echo $short_sha
          echo "${{ secrets.DOCKERHUB_TOKEN }}"
          echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
+         
       - name: Copy SSH key
         run: |
           echo "${{ secrets.EC2_SSH_KEY }}" > key.pem
           chmod 600 key.pem
+
       - name: Deploy to EC2 via SSH
         run: |
           ssh -o StrictHostKeyChecking=no -i key.pem ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} << EOF
@@ -67,16 +69,17 @@ jobs:
           # Replace the image tag with git SHA
           sudo ls -la
           cd devopsrorbilling
-          sudo short_sha=$(echo "${{ github.sha }}" | cut -c1-9)
-          sudo echo $short_sha
-          sudo sed -i "s|naveen2112/nginx:*|naveen2112/nginx:$short_sha|" docker-compose.yml
+          
+          # Use regular assignment without sudo
+          short_sha=$(echo "${{ github.sha }}" | cut -c1-9)
+          echo $short_sha
+          sudo sed -i "s|naveen2112/nginx:.*|naveen2112/nginx:$short_sha|" docker-compose.yml
           
           cat docker-compose.yml
 
           # Pull latest docker image
           sudo docker pull ${{ secrets.DOCKERHUB_USERNAME }}/nginx:$short_sha
 
-          #  Start containers with inline env
+          # Start containers with inline env
           sudo docker-compose up -d 
           EOF
-
