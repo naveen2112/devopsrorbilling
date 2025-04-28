@@ -73,7 +73,9 @@ jobs:
           # Use regular assignment without sudo
           short_sha=$(echo "${{ github.sha }}" | cut -c1-9)
           echo $short_sha
+          # Correct the sed command to replace with the correct image tag
           sudo sed -i "s|naveen2112/nginx:.*|naveen2112/nginx:$short_sha|" docker-compose.yml
+
           
           cat docker-compose.yml
 
