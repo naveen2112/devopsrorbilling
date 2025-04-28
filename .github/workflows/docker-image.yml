@@ -23,13 +23,13 @@ jobs:
         run: |
           short_sha=$(echo "${{ github.sha }}" | cut -c1-9)
           echo $short_sha
-          docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/nginx:$short_sha -f ./nginx/Dockerfile .
+          docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/nginx:${{ env.COMMIT_SHA }} -f ./nginx/Dockerfile .
 
       - name: Push Docker image
         run: |
           short_sha=$(echo "${{ github.sha }}" | cut -c1-9)
           echo $short_sha
-          docker push ${{ secrets.DOCKERHUB_USERNAME }}/nginx:$short_sha
+          docker push ${{ secrets.DOCKERHUB_USERNAME }}/nginx:${{ env.COMMIT_SHA }}
 
 
   deploy:
@@ -70,12 +70,12 @@ jobs:
           short_sha=$(echo "${{ github.sha }}" | cut -c1-9)
           echo $short_sha
           export short_sha=${short_sha}
-          sudo sed -i "s|naveen2112/nginx:*|naveen2112/nginx:$short_sha|" docker-compose.yml
+          sudo sed -i "s|naveen2112/nginx:*|naveen2112/nginx:${{ env.COMMIT_SHA }}|" docker-compose.yml
           
           cat docker-compose.yml
 
           # Pull latest docker image
-          sudo docker pull ${{ secrets.DOCKERHUB_USERNAME }}/nginx:$short_sha
+          sudo docker pull ${{ secrets.DOCKERHUB_USERNAME }}/nginx:${{ env.COMMIT_SHA }}
 
           #  Start containers with inline env
           sudo docker-compose up -d 
