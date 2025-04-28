@@ -64,7 +64,7 @@ jobs:
           sudo sed -i "s|naveen2112/nginx:*|naveen2112/nginx:${{ github.sha }}|" docker-compose.yml
 
           # Pull latest docker image
-          sudo docker pull ${{ secrets.DOCKERHUB_USERNAME }}/rorbilling:${{ github.sha }}
+          sudo docker pull ${{ secrets.DOCKERHUB_USERNAME }}/nginx:${{ github.sha }}
           sudo ln -sfn .env.production .env
 
           #  Start containers with inline env
