@@ -27,6 +27,8 @@ jobs:
 
       - name: Push Docker image
         run: |
+          short_sha=$(echo "${{ github.sha }}" | cut -c1-9)
+          echo $short_sha
           docker push ${{ secrets.DOCKERHUB_USERNAME }}/nginx:$short_sha
 
 
@@ -66,6 +68,8 @@ jobs:
           # Replace the image tag with git SHA
           sudo ls -la
           cd devopsrorbilling
+          short_sha=$(echo "${{ github.sha }}" | cut -c1-9)
+          echo $short_sha
           sudo sed -i "s|naveen2112/nginx:*|naveen2112/nginx:short_sha|" docker-compose.yml
           
           cat docker-compose.yml
