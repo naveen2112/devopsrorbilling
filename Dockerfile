@@ -11,7 +11,7 @@ RUN apt-get install libpq-dev -y
 RUN apt install git -y && apt install vim -y
 RUN gem install nokogiri -v 1.15.7
 RUN gem install zeitwerk -v 2.6.18
-RUN gem install rails -v 6.1.3
+RUN gem install rails -v 6.0.4
 RUN gem install bundler:2.2.21
 WORKDIR /var/www
 RUN git clone https://github.com/naveen2112/devopsrorbilling.git
