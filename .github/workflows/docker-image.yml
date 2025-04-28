@@ -67,8 +67,8 @@ jobs:
           # Replace the image tag with git SHA
           sudo ls -la
           cd devopsrorbilling
-          sudo short_sha=$(echo "${{ github.sha }}" | cut -c1-9)
-          sudo echo $short_sha
+          sudo export short_sha=$(echo "${{ github.sha }}" | cut -c1-9)
+          echo $short_sha
           sudo sed -i "s|naveen2112/nginx:*|naveen2112/nginx:$short_sha|" docker-compose.yml
           
           cat docker-compose.yml
