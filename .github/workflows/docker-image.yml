@@ -69,12 +69,12 @@ jobs:
           cd devopsrorbilling
           short_sha=$(echo "${{ github.sha }}" | cut -c1-9)
           echo $short_sha
-          sudo sed -i "s|naveen2112/nginx:*|naveen2112/nginx:short_sha|" docker-compose.yml
+          sudo sed -i "s|naveen2112/nginx:*|naveen2112/nginx:$short_sha|" docker-compose.yml
           
           cat docker-compose.yml
 
           # Pull latest docker image
-          sudo docker pull ${{ secrets.DOCKERHUB_USERNAME }}/nginx:short_sha
+          sudo docker pull ${{ secrets.DOCKERHUB_USERNAME }}/nginx:$short_sha
 
           #  Start containers with inline env
           sudo docker-compose up -d 
