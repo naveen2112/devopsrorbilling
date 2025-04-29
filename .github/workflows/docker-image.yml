@@ -65,7 +65,11 @@ jobs:
           # Replace the image tag with git SHA
           sudo ls -la
           cd devopsrorbilling
-          sudo "sed -i 's|naveen2112/nginx:*|naveen2112/nginx:$SHORT_SHA|' docker-compose.yml"
+          cd devopsrorbilling
+
+          # Replace the image tag with the latest SHA
+          sudo bash -c "sed -i 's|naveen2112/nginx:.*|naveen2112/nginx:$SHORT_SHA|' docker-compose.yml"
+
           
           cat docker-compose.yml
 
