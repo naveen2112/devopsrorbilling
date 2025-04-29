@@ -41,6 +41,7 @@ jobs:
           chmod 600 key.pem
       - name: Deploy to EC2 via SSH
         run: |
+          SHORT_SHA=$(echo "${{ github.sha }}" | cut -c1-9)
           ssh -o StrictHostKeyChecking=no -i key.pem ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} << EOF
           set -xe
           cd ~
@@ -60,13 +61,12 @@ jobs:
           # Replace the image tag with git SHA
           sudo ls -la
           cd devopsrorbilling
-          short_sha=$(echo "${{ github.sha }}" | cut -c1-9)
-          sudo sed -i "s|naveen2112/nginx:*|naveen2112/nginx:$short_sha|" docker-compose.yml
+          sudo sed -i "s|naveen2112/nginx:*|naveen2112/nginx:$SHORT_SHA|" docker-compose.yml
           
           cat docker-compose.yml
 
           # Pull latest docker image
-          sudo docker pull ${{ secrets.DOCKERHUB_USERNAME }}/nginx:$short_sha
+          sudo docker pull ${{ secrets.DOCKERHUB_USERNAME }}/nginx:$SHORT_SHA
 
           #  Start containers with inline env
           sudo docker-compose up -d 
