@@ -25,6 +25,8 @@ jobs:
           SHORT_SHA=$(echo "${{ github.sha }}" | cut -c1-9)
           echo $SHORT_SHA
           docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/nginx:$SHORT_SHA -f ./nginx/Dockerfile .
+          docker push ${{ secrets.DOCKERHUB_USERNAME }}/nginx:$SHORT_SHA
+
 
   # deploy:
   #   runs-on: ubuntu-latest    
