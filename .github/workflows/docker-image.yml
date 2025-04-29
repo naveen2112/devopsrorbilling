@@ -46,19 +46,26 @@ jobs:
           SHORT_SHA=$(echo "${{ github.sha }}" | cut -c1-9)
           ssh -o StrictHostKeyChecking=no -i key.pem ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} << EOF
           set -xe
+
           cd ~
+
           SHORT_SHA=${{ env.SHORT_SHA }}
           DOCKERHUB_USERNAME=${{ secrets.DOCKERHUB_USERNAME }}
 
           if [ -d "devopsrorbilling" ]; then
            sudo bash -c '
             cd devopsrorbilling
+            git stash push -m "Pre-deploy stash"
+            git fetch origin
             git pull origin master
            '
           else
            sudo git clone https://github.com/naveen2112/devopsrorbilling.git
            sudo bash -c '
             cd devopsrorbilling
+            git stash push -m "Pre-deploy stash"
+            git fetch origin
+            git pull origin master
            '
           fi
 
