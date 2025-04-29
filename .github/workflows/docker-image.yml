@@ -73,7 +73,7 @@ jobs:
           cat docker-compose.yml
 
           # Pull latest Docker image
-          sudo docker pull $DOCKERHUB_USERNAME/nginx:$SHORT_SHA
+          sudo docker pull \$DOCKERHUB_USERNAME/nginx:\$SHORT_SHA
 
           # Stop and remove existing containers
           sudo docker-compose down
