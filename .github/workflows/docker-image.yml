@@ -23,7 +23,7 @@ jobs:
       - name: Build Docker image
         run: |
           SHORT_SHA=$(echo "${{ github.sha }}" | cut -c1-9)
-          echo $SHORT_SHA
+          echo "SHORT_SHA=$SHORT_SHA" >> $GITHUB_ENV
           docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/nginx:$SHORT_SHA -f ./nginx/Dockerfile .
           docker push ${{ secrets.DOCKERHUB_USERNAME }}/nginx:$SHORT_SHA
 
@@ -47,8 +47,7 @@ jobs:
           ssh -o StrictHostKeyChecking=no -i key.pem ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} << EOF
           set -xe
           cd ~
-          SHORT_SHA=$(echo "${{ github.sha }}" | cut -c1-9)
-          sudo bash -c "echo \$SHORT_SHA"
+          SHORT_SHA=${{ env.SHORT_SHA }}
 
           if [ -d "devopsrorbilling" ]; then
            sudo bash -c '
