@@ -48,6 +48,7 @@ jobs:
           set -xe
           cd ~
           SHORT_SHA=${{ env.SHORT_SHA }}
+          DOCKERHUB_USERNAME=${{ secrets.DOCKERHUB_USERNAME }}
 
           if [ -d "devopsrorbilling" ]; then
            sudo bash -c '
