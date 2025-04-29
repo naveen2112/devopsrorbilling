@@ -67,9 +67,6 @@ jobs:
           
           cat docker-compose.yml
 
-          # # Pull latest docker image
-          # sudo docker pull ${{ secrets.DOCKERHUB_USERNAME }}/nginx:$SHORT_SHA
-
           #  Start containers with inline env
           sudo docker-compose up -d 
           EOF
