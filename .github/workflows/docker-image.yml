@@ -47,7 +47,9 @@ jobs:
           ssh -o StrictHostKeyChecking=no -i key.pem ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} << EOF
           set -xe
           cd ~
-          sudo SHORT_SHA=$(echo "${{ github.sha }}" | cut -c1-9)
+          SHORT_SHA=$(echo "${{ github.sha }}" | cut -c1-9)
+          sudo bash -c "echo \$SHORT_SHA"
+
           if [ -d "devopsrorbilling" ]; then
            sudo bash -c '
             cd devopsrorbilling
@@ -63,14 +65,13 @@ jobs:
           # Replace the image tag with git SHA
           sudo ls -la
           cd devopsrorbilling
-          sudo sed -i "s|naveen2112/nginx:*|naveen2112/nginx:$SHORT_SHA|" docker-compose.yml
+          sudo bash -c "sed -i 's|naveen2112/nginx:*|naveen2112/nginx:$SHORT_SHA|' docker-compose.yml"
           
           cat docker-compose.yml
 
           # # Pull latest docker image
-          # sudo docker pull ${{ secrets.DOCKERHUB_USERNAME }}/nginx:$SHORT_SHA
-
-          #  Start containers with inline env
-          sudo docker-compose up -d 
+          # Pull and run
+          sudo docker pull \$DOCKERHUB_USERNAME/nginx:\$SHORT_SHA
+          sudo docker-compose up -d
           EOF
 
